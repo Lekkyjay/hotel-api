@@ -10,7 +10,7 @@
     "dev:docker": "ts-node-dev src/server.ts",
     "build": "rm -rf ./dist && tsc",
     "start:old": "pnpm build && node --env-file .env.aiven dist/server.js",
-    "start": "pnpm build && node dist/server.js"
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
