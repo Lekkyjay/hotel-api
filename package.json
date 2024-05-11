@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "e2e": "ts-node-dev --env-file .env.aiven.test src/server.ts",
-    "dev": "ts-node-dev --env-file .env src/server.ts",
-    "dev:aiven": "ts-node-dev --env-file .env.aiven src/server.ts",
+    "dev": "ts-node-dev --env-file .env.aiven src/server.ts",
+    "dev:local": "ts-node-dev --env-file .env src/server.ts",
     "dev:docker": "ts-node-dev src/server.ts",
     "build": "rm -rf ./dist && tsc",
-    "start": "pnpm build && node dist/server.js"
+    "start": "pnpm build && node --env-file .env.aiven dist/server.js"
   },
   "keywords": [],
   "author": "",

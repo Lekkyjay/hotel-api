@@ -3,4 +3,4 @@ node_modules
 compose*
 database-seed.sql
 Dockerfile
-
+dist
