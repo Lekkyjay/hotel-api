@@ -36,12 +36,12 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body
-  console.log(req.body)
+  // console.log(req.body)
   if (!email || !password) throw new CustomError(400, 'email or password is incorrect')
 
   try {
     const user = await pool.query('SELECT * FROM users WHERE email = $1', [email])
-    console.log(user.rows)
+    // console.log(user.rows)
     if (user.rows.length === 0) return next(new CustomError(404, 'Invalid Credentials!'))
      
 
@@ -72,10 +72,10 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-const validToken = (req: Request, res: Response, next: NextFunction) => {
+const validToken = (req: Request, res: Response) => {
   res.status(200).send({
     message: 'Token is Valid!',
-    data: null,
+    data: { userId: req.userId },
     success: true
   })
 }
