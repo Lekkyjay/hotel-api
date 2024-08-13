@@ -14,6 +14,7 @@ const users = async (req: Request, res: Response) => {
   } 
   catch (error: any) {
     console.error(error.stack)
+    res.status(500).send('Users table creation failed!')
     return false
   } 
   finally {
