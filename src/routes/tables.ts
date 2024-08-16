@@ -4,7 +4,7 @@ import { users } from '../controllers/tables'
 const router = express.Router()
 
 // api/table/users
-router.get('/users', users)
+router.post('/users', users)
 
 
 export default router
