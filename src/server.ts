@@ -7,6 +7,7 @@ import helloRoutes from './routes/hello'
 import tableRoutes from './routes/tables'
 import authRoutes from './routes/auth'
 import hotelRoutes from './routes/hotel'
+import myHotelRoutes from './routes/myhotel'
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use('/api/hello', helloRoutes)
 app.use('/api/table', tableRoutes)
 app.use('/api/auth', authRoutes)
 app.use('/api/hotel', hotelRoutes)
+app.use('/api/myhotel', myHotelRoutes)
 
 
 //whenever u pass any arg to the next fn, express will automatically forward it as an error to ur global errorHandler

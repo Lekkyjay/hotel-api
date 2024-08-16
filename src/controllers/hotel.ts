@@ -48,8 +48,7 @@ const createHotel = async (req: Request, res: Response, next: NextFunction) => {
     })
 
     const imgUrls = await Promise.all(uploadPromises)
-
-
+    
     await pool.query(`CALL create_country_sp($1)`, [hotelData])
     
     res.status(200).send({
