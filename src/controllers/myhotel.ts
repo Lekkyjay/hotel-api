@@ -15,7 +15,7 @@ const createMyHotel = async (req: Request, res: Response, next: NextFunction) =>
 
     const imgUrls = await Promise.all(uploadPromises)
     const lastUpdated = new Date()
-    const userId = 1
+    const userId = req.userId
 
     const { name, city, country, description, type, adultCount, childCount, facilities, pricePerNight, starRating } = req.body
 

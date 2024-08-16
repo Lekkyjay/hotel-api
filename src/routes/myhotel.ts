@@ -5,6 +5,6 @@ import { verifyToken } from '../middlewares/auth'
 
 const router = express.Router()
 
-router.post('/', upload.array('imageFiles', 6), createMyHotel)
+router.post('/', verifyToken, upload.array('imageFiles', 6), createMyHotel)
 
 export default router
