@@ -19,14 +19,12 @@ const createMyHotel = async (req: Request, res: Response, next: NextFunction) =>
 
     const { name, city, country, description, type, adultCount, childCount, facilities, pricePerNight, starRating } = req.body
 
-
     const query = `INSERT INTO hotels (name, city, country, description, type, adultcount, childcount, facilities, price_pernight,
       star_rating, img_urls, lastupdated, user_id) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
       RETURNING *`
 
     const params = [name, city, country, description, type, adultCount, childCount, facilities, pricePerNight, starRating, imgUrls, lastUpdated, userId]
-
     const newHotel = await pool.query(query, params)
 
     res.status(200).send({
@@ -36,9 +34,27 @@ const createMyHotel = async (req: Request, res: Response, next: NextFunction) =>
     })
   } 
   catch (error) {
-    console.log('Error creating hotel....:', error)
+    console.log('Error creating my hotel....:', error)
     next(error)
   }  
 }
 
-export { createMyHotel }
+const getMyHotels = async (req: Request, res: Response, next: NextFunction) => { 
+  try {    
+    const userId = req.userId   
+
+    const myHotels = await pool.query('SELECT * FROM hotels WHERE user_id = $1', [userId])
+
+    res.status(200).send({
+      message: 'My hotels fetched successfully!',
+      data: myHotels.rows,
+      success: true
+    })
+  } 
+  catch (error) {
+    console.log('Error fetching my hotels....:', error)
+    next(error)
+  }  
+}
+
+export { createMyHotel, getMyHotels }
